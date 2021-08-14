@@ -7,16 +7,16 @@ using framework.asp.Models;
 
 namespace framework.asp.Controllers
 {
-    public class UsuarioController : Controller
+    public class ProveedorController : Controller
     {
-        // GET: Usuario
+        // GET: Proveedor
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.usuario.ToList());
+
+                return View(db.proveedor.ToList());
             }
-            
         }
 
         public ActionResult Create()
@@ -26,102 +26,99 @@ namespace framework.asp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (usuario usuario)
+
+        public ActionResult Create(proveedor proveedor)
         {
             if (!ModelState.IsValid)
                 return View();
 
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    db.usuario.Add(usuario);
+                    db.proveedor.Add(proveedor);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+
+            } catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
+
             }
-
-
         }
 
-        public ActionResult Details ( int id )
+        public ActionResult Details(int id)
         {
             using (var db = new inventario2021Entities())
             {
-                var findUser = db.usuario.Find(id);
-                return View(findUser);
+                var findProveedor = db.proveedor.Find(id);
+                return View(findProveedor);
             }
         }
 
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    var findUser = db.usuario.Find(id);
-                    db.usuario.Remove(findUser);
+                    var findProveedor = db.proveedor.Find(id);
+                    db.proveedor.Remove(findProveedor);
                     db.SaveChanges();
                     return RedirectToAction("Index");
-
-
                 }
-            }catch (Exception ex)
+
+            } catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }
-
-        public ActionResult Edit (int id)
+    
+        public ActionResult Edit ( int id )
         {
             try
             {
-                using (var db= new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    var FindUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
-                    return View(FindUser);
+                    var FindProveedor = db.proveedor.Where(a => a.id == id).FirstOrDefault();
+                    return View(FindProveedor);
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
-
-            
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(usuario editUser)
+        public ActionResult Edit (proveedor editproveedor)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    usuario user = db.usuario.Find(editUser.id);
+                    proveedor proveedor = db.proveedor.Find(editproveedor.id);
 
-                    user.nombre = editUser.nombre;
-                    user.apellido = editUser.apellido;
-                    user.email = editUser.email;
-                    user.fecha_nacimiento = editUser.fecha_nacimiento;
-                    user.password = editUser.password;
+                    proveedor.nombre = editproveedor.nombre;
+                    proveedor.direccion = editproveedor.direccion;
+                    proveedor.telefono = editproveedor.telefono;
+                    proveedor.nombre_contacto = editproveedor.nombre_contacto;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-             
-            }catch (Exception ex )
+            }catch (Exception ex)
             {
-                ModelState.AddModelError("", "error" + ex);
+                ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }
     }
-
 }

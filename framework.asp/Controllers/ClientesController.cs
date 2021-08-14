@@ -7,72 +7,73 @@ using framework.asp.Models;
 
 namespace framework.asp.Controllers
 {
-    public class UsuarioController : Controller
+    public class ClientesController : Controller
     {
-        // GET: Usuario
+        // GET: Clientes
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.usuario.ToList());
+
+                return View(db.cliente.ToList());
             }
-            
+           
         }
 
-        public ActionResult Create()
+        public ActionResult Create ()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (usuario usuario)
+
+        public ActionResult Create(cliente cliente)
         {
             if (!ModelState.IsValid)
                 return View();
 
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    db.usuario.Add(usuario);
+                    db.cliente.Add(cliente);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
+
             }
-
-
         }
 
-        public ActionResult Details ( int id )
+        public ActionResult Details (int id )
         {
             using (var db = new inventario2021Entities())
             {
-                var findUser = db.usuario.Find(id);
-                return View(findUser);
+                var findCliente = db.cliente.Find(id);
+                return View(findCliente);
             }
         }
 
-        public ActionResult Delete (int id)
+        public ActionResult Delete (int id )
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    var findUser = db.usuario.Find(id);
-                    db.usuario.Remove(findUser);
+                    var findcliente = db.cliente.Find(id);
+                    db.cliente.Remove(findcliente);
                     db.SaveChanges();
                     return RedirectToAction("Index");
-
-
                 }
             }catch (Exception ex)
             {
-                ModelState.AddModelError("", "error " + ex);
+                ModelState.AddModelError("", "error" + ex);
                 return View();
             }
         }
@@ -81,47 +82,44 @@ namespace framework.asp.Controllers
         {
             try
             {
-                using (var db= new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    var FindUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
-                    return View(FindUser);
+                    var Findcliente = db.cliente.Where(a => a.id == id).FirstOrDefault();
+                    return View(Findcliente);
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
-
-            
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(usuario editUser)
+        public ActionResult Edit (cliente editcliente )
         {
-            try
+            try 
             {
                 using (var db = new inventario2021Entities())
                 {
-                    usuario user = db.usuario.Find(editUser.id);
+                    cliente cliente = db.cliente.Find(editcliente.id);
 
-                    user.nombre = editUser.nombre;
-                    user.apellido = editUser.apellido;
-                    user.email = editUser.email;
-                    user.fecha_nacimiento = editUser.fecha_nacimiento;
-                    user.password = editUser.password;
+                    cliente.nombre = editcliente.nombre;
+                    cliente.documento = editcliente.documento;
+                    cliente.email = editcliente.email;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-             
-            }catch (Exception ex )
+
+            }catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
             }
         }
     }
-
 }

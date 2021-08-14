@@ -7,53 +7,55 @@ using framework.asp.Models;
 
 namespace framework.asp.Controllers
 {
-    public class UsuarioController : Controller
+    public class RolesController : Controller
     {
-        // GET: Usuario
+        // GET: Roles
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.usuario.ToList());
+                return View(db.roles.ToList());
             }
             
         }
 
-        public ActionResult Create()
+        public ActionResult Create ()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (usuario usuario)
+
+        public ActionResult Create (roles roles)
         {
             if (!ModelState.IsValid)
                 return View();
 
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    db.usuario.Add(usuario);
+                    db.roles.Add(roles);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
+
             }
-
-
         }
 
-        public ActionResult Details ( int id )
+        public ActionResult Details (int id)
         {
             using (var db = new inventario2021Entities())
             {
-                var findUser = db.usuario.Find(id);
-                return View(findUser);
+                var findroles = db.roles.Find(id);
+                return View(findroles);
             }
         }
 
@@ -63,65 +65,62 @@ namespace framework.asp.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    var findUser = db.usuario.Find(id);
-                    db.usuario.Remove(findUser);
+                    var findroles = db.roles.Find(id);
+                    db.roles.Remove(findroles);
                     db.SaveChanges();
                     return RedirectToAction("Index");
-
-
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "error " + ex);
+                ModelState.AddModelError("", "error" + ex);
                 return View();
             }
         }
 
-        public ActionResult Edit (int id)
-        {
-            try
-            {
-                using (var db= new inventario2021Entities())
-                {
-                    var FindUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
-                    return View(FindUser);
-                }
-
-            }catch (Exception ex)
-            {
-                ModelState.AddModelError("", "error " + ex);
-                return View();
-            }
-
-            
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Edit(usuario editUser)
+        public ActionResult Edit (int id )
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    usuario user = db.usuario.Find(editUser.id);
+                    var Findroles = db.roles.Where(a => a.id == id).FirstOrDefault();
+                    return View(Findroles);
+                }
 
-                    user.nombre = editUser.nombre;
-                    user.apellido = editUser.apellido;
-                    user.email = editUser.email;
-                    user.fecha_nacimiento = editUser.fecha_nacimiento;
-                    user.password = editUser.password;
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Edit (roles editroles)
+        {
+            try
+            {
+                using (var db = new inventario2021Entities())
+                {
+                    roles roles = db.roles.Find(editroles.id);
+
+                    roles.descripcion = editroles.descripcion;
+
+                   
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-             
-            }catch (Exception ex )
+
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
             }
         }
     }
-
 }
