@@ -1,0 +1,61 @@
+﻿@model framework.asp.Models.compra
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Compra </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="fecha">Fecha Compra</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-date="El campo fecha debe ser una fecha." data-val-required="El campo fecha es obligatorio." id="fecha" name="fecha" type="date" value="">
+                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="total ">Total Compra</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="id_usuario">Usuario</label>
+            <div class="col-md-10">
+                @Html.Action("listarUsuarios")
+                @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="id_cliente">Cliente</label>
+            <div class="col-md-10">
+                @Html.Action("listarCliente")
+                @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista ", "Index")
+</div>

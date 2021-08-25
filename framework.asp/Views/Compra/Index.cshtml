@@ -1,24 +1,27 @@
-﻿@model IEnumerable<framework.asp.Models.cliente>
+﻿@model IEnumerable<framework.asp.Models.compra>
 
 @{
-    ViewBag.Title = "Clientes-Lista";
+    ViewBag.Title = "Compra - Lista";
 }
 
-<h2>Lista Clientes</h2>
+<h2>Lista Compra</h2>
 
 <p>
-    @Html.ActionLink("Crear Cliente", "Create")
+    @Html.ActionLink("Crear compra", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Nombre Cliente
+            Fecha Compra
         </th>
         <th>
-            Documento
+            Total Compra
         </th>
         <th>
-            Correo Electronico
+            Usuario
+        </th>
+        <th>
+            Cliente
         </th>
         <th></th>
     </tr>
@@ -27,13 +30,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.documento)
+                @Html.DisplayFor(modelItem => item.total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @framework.asp.Controllers.CompraController.NombreUsuario(item.id_usuario)
+            </td>
+            <td>
+                @framework.asp.Controllers.CompraController.NombreCliente(item.id_cliente)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |

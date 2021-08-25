@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Software Inventario </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,13 +17,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Inventario", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Mas", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Opciones
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Usuario Crud", "Index", "Usuario")</li>
+                            <li>@Html.ActionLink("Producto Crud", "Index", "Producto")</li>
+                            <li> @Html.ActionLink("Proveedor Crud", "Index", "Proveedor") </li>
+                            <li>@Html.ActionLink("Roles Crud", "Index", "Roles")</li>
+                            <li>@Html.ActionLink("Clientes Crud", "Index", "Clientes")</li>
+                            <li>@Html.ActionLink("ProductoCompra Crud", "Index", "ProductoCompra")</li>
+                            <li>@Html.ActionLink("Compra Crud", "Index", "Compra")</li>
+                            <li>@Html.ActionLink("ProductoImagen Crud", "Index", "ProductoImagen")</li>
+                            <li>@Html.ActionLink("UsuarioRol Crud", "Index", "UsuarioRol")</li>
+
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -32,7 +50,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - By: Daniela Gutierrez</p>
         </footer>
     </div>
 

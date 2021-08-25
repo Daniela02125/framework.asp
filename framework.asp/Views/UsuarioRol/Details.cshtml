@@ -1,21 +1,28 @@
-﻿@model framework.asp.Models.roles
+﻿@model framework.asp.Models.usuariorol
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Detalles Roles</h2>
+<h2>Detalles UsuarioRol</h2>
 
 <div>
-    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Descripcion
+            Usuario
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.descripcion)
+            @Html.DisplayFor(model => model.idUsuario)
+        </dd>
+
+        <dt>
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idRol)
         </dd>
 
     </dl>

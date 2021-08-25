@@ -129,10 +129,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductoCompraController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\ProductoImagenController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioRolController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,23 +241,47 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Details.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Proveedor\Index.cshtml" />
     <Content Include="Views\Proveedor\Create.cshtml" />
     <Content Include="Views\Proveedor\Details.cshtml" />
-    <Content Include="Views\Proveedor\Delete.cshtml" />
     <Content Include="Views\Proveedor\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Clientes\Create.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
-    <Content Include="Views\Clientes\Delete.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
-    <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
+    <Content Include="Views\Producto\ListarProveedores.cshtml" />
+    <Content Include="Views\Producto\Details.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Compra\Create.cshtml" />
+    <Content Include="Views\Compra\ListarUsuarios.cshtml" />
+    <Content Include="Views\Compra\Details.cshtml" />
+    <Content Include="Views\Compra\Edit.cshtml" />
+    <Content Include="Views\Compra\ListarCliente.cshtml" />
+    <Content Include="Views\ProductoImagen\Index.cshtml" />
+    <Content Include="Views\ProductoImagen\Create.cshtml" />
+    <Content Include="Views\ProductoImagen\ListarProducto.cshtml" />
+    <Content Include="Views\ProductoImagen\Details.cshtml" />
+    <Content Include="Views\ProductoImagen\Edit.cshtml" />
+    <Content Include="Views\UsuarioRol\Index.cshtml" />
+    <Content Include="Views\UsuarioRol\Create.cshtml" />
+    <Content Include="Views\UsuarioRol\Edit.cshtml" />
+    <Content Include="Views\UsuarioRol\ListarUsuarios.cshtml" />
+    <Content Include="Views\UsuarioRol\ListarRoles.cshtml" />
+    <Content Include="Views\ProductoCompra\Index.cshtml" />
+    <Content Include="Views\ProductoCompra\Create.cshtml" />
+    <Content Include="Views\ProductoCompra\ListarProducto.cshtml" />
+    <Content Include="Views\ProductoCompra\Details.cshtml" />
+    <Content Include="Views\ProductoCompra\Edit.cshtml" />
+    <Content Include="Views\ProductoCompra\ListarTotalCompra.cshtml" />
+    <Content Include="Views\UsuarioRol\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

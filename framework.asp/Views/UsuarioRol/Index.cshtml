@@ -1,24 +1,21 @@
-﻿@model IEnumerable<framework.asp.Models.cliente>
+﻿@model IEnumerable<framework.asp.Models.usuariorol>
 
 @{
-    ViewBag.Title = "Clientes-Lista";
+    ViewBag.Title = "Index";
 }
 
-<h2>Lista Clientes</h2>
+<h2>Lista UsuarioRol</h2>
 
 <p>
-    @Html.ActionLink("Crear Cliente", "Create")
+    @Html.ActionLink("Crear UsuariRol", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Nombre Cliente
+            Usuario
         </th>
         <th>
-            Documento
-        </th>
-        <th>
-            Correo Electronico
+            Rol
         </th>
         <th></th>
     </tr>
@@ -27,13 +24,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @framework.asp.Controllers.UsuarioRolController.NombreUsuario(item.idUsuario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.documento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @framework.asp.Controllers.UsuarioRolController.Roles(item.idRol)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |

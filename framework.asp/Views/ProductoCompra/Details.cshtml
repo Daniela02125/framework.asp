@@ -1,37 +1,37 @@
-﻿@model framework.asp.Models.cliente
+﻿@model framework.asp.Models.producto_compra
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Detalles del Cliente</h2>
+<h2>Detalles Compra</h2>
 
 <div>
     
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Nombre Cliente
+            Compra
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.id_compra)
         </dd>
 
         <dt>
-            Documento
+           Producto
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.documento)
+            @framework.asp.Controllers.ProductoCompraController.Producto(Model.id_producto)
         </dd>
 
         <dt>
-            Correo Electronico
+            Cantidad
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.email)
+            @Html.DisplayFor(model => model.cantidad)
         </dd>
 
     </dl>
