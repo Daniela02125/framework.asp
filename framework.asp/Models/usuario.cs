@@ -11,7 +11,8 @@ namespace framework.asp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +21,25 @@ namespace framework.asp.Models
             this.compra = new HashSet<compra>();
             this.usuariorol = new HashSet<usuariorol>();
         }
-    
+
         public int id { get; set; }
+
+        [Required]
         public string nombre { get; set; }
+
+        [Required]
         public string apellido { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public System.DateTime fecha_nacimiento { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
+
+        [Required]
+        [StringLength(8, ErrorMessage = "Maximo 8 caracteres")]
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

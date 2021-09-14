@@ -1,0 +1,36 @@
+﻿@model IEnumerable<framework.asp.Models.Reporte>
+@{
+    ViewBag.Title = "Reporte";
+}
+
+
+<h2>Reporte  <img src="https://www2.utp.edu.co/cms-utp/data/bin/UTP/web/uploads/media/comunicaciones/img/antiguas/105847SENA.gif" alt="" /></h2> 
+
+
+<table class="table">
+    <tr>
+
+        <th>Usuario</th>
+        <th>Email Usuario</th>
+        <th>Fecha Compra</th>
+        <th>Total Compra</th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
+    <td>@Html.DisplayFor(modelItem => item.EmailUsuario)</td>
+    <td>@Html.DisplayFor(modelItem => item.Fecha_Compra)</td>
+    <td>@Html.DisplayFor(modelItem => item.TotalCompra)</td>
+   
+</tr>
+        
+    }
+
+</table>
+
+
+
+@Html.ActionLink("Descargar Reporte", "PdfReporte");

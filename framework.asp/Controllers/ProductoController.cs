@@ -7,6 +7,7 @@ using framework.asp.Models;
 
 namespace framework.asp.Controllers
 {
+    [Authorize]
     public class ProductoController : Controller
     {
         // GET: Producto

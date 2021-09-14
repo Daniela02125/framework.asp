@@ -9,6 +9,7 @@ namespace framework.asp.Controllers
 {
     public class UsuarioRolController : Controller
     {
+        [Authorize]
         // GET: UsuarioRol
         public ActionResult Index()
         {
@@ -16,7 +17,7 @@ namespace framework.asp.Controllers
             {
                 return View(db.usuariorol.ToList());
             }
-            
+
         }
         public static string NombreUsuario(int idusuario)
         {
@@ -26,7 +27,7 @@ namespace framework.asp.Controllers
             }
         }
 
-        public static string Roles (int idrol)
+        public static string Roles(int idrol)
         {
             using (var db = new inventario2021Entities())
             {
@@ -92,7 +93,7 @@ namespace framework.asp.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-               usuariorol usuariorolEdit = db.usuariorol.Where(a => a.id == id).FirstOrDefault();
+                usuariorol usuariorolEdit = db.usuariorol.Where(a => a.id == id).FirstOrDefault();
                 return View(usuariorolEdit);
             }
         }
@@ -141,5 +142,8 @@ namespace framework.asp.Controllers
                 return View();
             }
         }
+
+
+       
     }
 }

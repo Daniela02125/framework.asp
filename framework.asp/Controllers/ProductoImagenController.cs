@@ -7,8 +7,10 @@ using framework.asp.Models;
 
 namespace framework.asp.Controllers
 {
+    
     public class ProductoImagenController : Controller
     {
+        [Authorize]
         // GET: ProductoImagen
         public ActionResult Index()
         {

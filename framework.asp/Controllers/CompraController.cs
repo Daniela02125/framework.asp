@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using framework.asp.Models;
+using Rotativa;
 
 namespace framework.asp.Controllers
 {
+    
     public class CompraController : Controller
     {
+        [Authorize]
         // GET: Compra
         public ActionResult Index()
         {
@@ -146,6 +149,36 @@ namespace framework.asp.Controllers
                 ModelState.AddModelError("", "error" + ex);
                 return View();
             }
+        }
+
+        public ActionResult Reporte ()
+        {
+            try
+            {
+                var db = new inventario2021Entities();
+                var query = from tabUsuario in db.usuario
+                            join tabCompra in db.compra on tabUsuario.id equals tabCompra.id_usuario
+                            select new Reporte
+                            {
+                                NombreUsuario = tabUsuario.nombre,
+                                EmailUsuario = tabUsuario.email,
+                                Fecha_Compra = tabCompra.fecha,
+                                TotalCompra = tabCompra.total,
+
+                            };
+                return View(query);
+
+
+            }catch(Exception ex)
+            {
+                ModelState.AddModelError("", "error" + ex);
+                return View();
+            }
+        }
+
+        public ActionResult PdfReporte()
+        {
+            return new ActionAsPdf("Reporte") { FileName = "reporte.pdf" };
         }
     }
 }
