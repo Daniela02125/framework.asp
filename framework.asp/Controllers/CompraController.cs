@@ -156,12 +156,14 @@ namespace framework.asp.Controllers
             try
             {
                 var db = new inventario2021Entities();
-                var query = from tabUsuario in db.usuario
-                            join tabCompra in db.compra on tabUsuario.id equals tabCompra.id_usuario
+                var query = from tabCliente in db.cliente
+                            join tabCompra in db.compra on tabCliente.id equals tabCompra.id_cliente
                             select new Reporte
                             {
-                                NombreUsuario = tabUsuario.nombre,
-                                EmailUsuario = tabUsuario.email,
+                                NombreUsuario = tabCliente.nombre,
+                                
+                                EmailUsuario = tabCliente.email,
+                               
                                 Fecha_Compra = tabCompra.fecha,
                                 TotalCompra = tabCompra.total,
 
