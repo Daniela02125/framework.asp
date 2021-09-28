@@ -72,7 +72,11 @@ namespace framework.asp.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.producto.Find(id));
+                var producto = db.producto.Find(id);
+                var imagen = db.producto_imagen.Where(e => e.id_producto == producto.id).FirstOrDefault();
+                ViewBag.imagen = imagen.imagen;
+
+                return View(producto);
             }
         }
 

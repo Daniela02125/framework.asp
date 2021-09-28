@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-           Descripcion
+            Descripcion
         </dt>
 
         <dd>
@@ -48,6 +48,14 @@
 
         <dd>
             @framework.asp.Controllers.ProductoController.NombreProveedor(Model.id_proveedor)
+        </dd>
+
+        <dt>
+            Imagen
+        </dt>
+        <dd>
+            
+            <img class="img-responsive" src="@Url.Content("~/" + ViewBag.imagen)" alt="Image" />
         </dd>
 
     </dl>

@@ -7,10 +7,11 @@ using framework.asp.Models;
 using System.Web.Security;
 using System.Text;
 using System.Web.Security;
+using System.Web.Routing;
 
 namespace framework.asp.Controllers
 {
-    
+
     public class UsuarioController : Controller
     {
         [Authorize]
@@ -21,7 +22,7 @@ namespace framework.asp.Controllers
             {
                 return View(db.usuario.ToList());
             }
-            
+
         }
 
         public ActionResult Create()
@@ -31,21 +32,22 @@ namespace framework.asp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (usuario usuario)
+        public ActionResult Create(usuario usuario)
         {
             if (!ModelState.IsValid)
                 return View();
 
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     usuario.password = UsuarioController.HashSHA1(usuario.password);
                     db.usuario.Add(usuario);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
@@ -68,7 +70,7 @@ namespace framework.asp.Controllers
             return sb.ToString();
         }
 
-        public ActionResult Details ( int id )
+        public ActionResult Details(int id)
         {
             using (var db = new inventario2021Entities())
             {
@@ -77,7 +79,7 @@ namespace framework.asp.Controllers
             }
         }
 
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             try
             {
@@ -90,30 +92,32 @@ namespace framework.asp.Controllers
 
 
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }
 
-        public ActionResult Edit (int id)
+        public ActionResult Edit(int id)
         {
             try
             {
-                using (var db= new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
                     var FindUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
                     return View(FindUser);
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error " + ex);
                 return View();
             }
 
-            
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -135,8 +139,9 @@ namespace framework.asp.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-             
-            }catch (Exception ex )
+
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -160,7 +165,7 @@ namespace framework.asp.Controllers
                 using (var db = new inventario2021Entities())
                 {
                     var userlogin = db.usuario.FirstOrDefault(e => e.email == user && e.password == passEncrip);
-                    if(userlogin != null)
+                    if (userlogin != null)
                     {
                         FormsAuthentication.SetAuthCookie(userlogin.email, true);
                         Session["user"] = userlogin;
@@ -182,12 +187,41 @@ namespace framework.asp.Controllers
 
         [Authorize]
 
-        public ActionResult CloseSession ()
+        public ActionResult CloseSession()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
-    }
 
+        public ActionResult PaginadorIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var usuarios = db.usuario.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros).Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.usuario.Count();
+                    var modelo = new UsuarioIndex();
+                    modelo.Usuarios = usuarios;
+                    modelo.ActualPage = pagina;
+                    modelo.Total = totalRegistros;
+                    modelo.RecordsPage = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+
+        }
+    }
 }

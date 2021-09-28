@@ -5,10 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using framework.asp.Models;
+using System.Web.Routing;
 
 namespace framework.asp.Controllers
 {
-    
+
     public class ClientesController : Controller
     {
         [Authorize]
@@ -20,10 +21,10 @@ namespace framework.asp.Controllers
 
                 return View(db.cliente.ToList());
             }
-           
+
         }
 
-        public ActionResult Create ()
+        public ActionResult Create()
         {
             return View();
         }
@@ -54,7 +55,7 @@ namespace framework.asp.Controllers
             }
         }
 
-        public ActionResult Details (int id )
+        public ActionResult Details(int id)
         {
             using (var db = new inventario2021Entities())
             {
@@ -63,7 +64,7 @@ namespace framework.asp.Controllers
             }
         }
 
-        public ActionResult Delete (int id )
+        public ActionResult Delete(int id)
         {
             try
             {
@@ -74,14 +75,15 @@ namespace framework.asp.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
             }
         }
 
-        public ActionResult Edit (int id)
+        public ActionResult Edit(int id)
         {
             try
             {
@@ -102,9 +104,9 @@ namespace framework.asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit (cliente editcliente )
+        public ActionResult Edit(cliente editcliente)
         {
-            try 
+            try
             {
                 using (var db = new inventario2021Entities())
                 {
@@ -118,7 +120,8 @@ namespace framework.asp.Controllers
                     return RedirectToAction("Index");
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "error" + ex);
                 return View();
@@ -167,12 +170,12 @@ namespace framework.asp.Controllers
                     {
                         if (!string.IsNullOrEmpty(row))
                         {
-                            var newCliente  = new cliente
+                            var newCliente = new cliente
                             {
-                                nombre= row.Split(';')[0],
-                                documento= row.Split(';')[2],
+                                nombre = row.Split(';')[0],
+                                documento = row.Split(';')[2],
                                 email = row.Split(';')[1],
-                                
+
                             };
 
                             using (var db = new inventario2021Entities())
@@ -196,5 +199,35 @@ namespace framework.asp.Controllers
                 return View();
             }
         }
-    }
+
+        public ActionResult PaginadorIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var clientes = db.cliente.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros).Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.cliente.Count();
+                    var modelo = new ClienteIndex();
+                    modelo.Clientes = clientes;
+                    modelo.ActualPage = pagina;
+                    modelo.Total = totalRegistros;
+                    modelo.RecordsPage = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+
+        }
+    }    
 }

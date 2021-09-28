@@ -7,11 +7,11 @@
 <h2><img src="https://static.vecteezy.com/system/resources/thumbnails/000/355/143/small/Health__2819_29.jpg" alt=""/>  Informe </h2> 
 
 
-<table class="table">
+<table class="table table-bordered table-hover">
     <tr>
 
         <th>Cliente</th>
-    
+
         <th>Email Cliente</th>
         <th>Fecha Compra</th>
         <th>Total Compra</th>
@@ -20,15 +20,15 @@
     </tr>
     @foreach (var item in Model)
     {
-<tr>
-    <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
-    
-    <td>@Html.DisplayFor(modelItem => item.EmailUsuario)</td>
-    <td>@Html.DisplayFor(modelItem => item.Fecha_Compra)</td>
-    <td>@Html.DisplayFor(modelItem => item.TotalCompra)</td>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
 
-</tr>
-        
+            <td>@Html.DisplayFor(modelItem => item.EmailUsuario)</td>
+            <td>@Html.DisplayFor(modelItem => item.Fecha_Compra)</td>
+            <td>@Html.DisplayFor(modelItem => item.TotalCompra)</td>
+
+        </tr>
+
     }
 
 </table>

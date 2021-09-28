@@ -1,0 +1,49 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.navbar-nav li a {
+    color: violet !important;
+}
+
+.textoHome {
+    color: violet;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: violet !important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: violet;
+    border-color: violet;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color:white;
+    background-color: black;
+}
+
+
+.btn-default {
+    color: #ffffff;
+    background-color: #b733b6ba;
+    border-color: #fbaff5;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #060404;
+    background-color: #d5d0d0;
+}

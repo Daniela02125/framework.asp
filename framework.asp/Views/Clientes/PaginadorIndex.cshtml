@@ -1,0 +1,25 @@
+﻿@model framework.asp.Models.ClienteIndex
+@{
+    ViewBag.Title = "PaginadorIndex";
+}
+
+<h2>Paginador Index</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var clientes in Model.Clientes)
+    {
+        <tr>
+            <td>@clientes.nombre</td>
+            <td>@clientes.documento</td>
+            <td>@clientes.email</td>
+        </tr>
+    }
+</table>
+
+@{ Html.RenderPartial("Paginador", Model); }
+

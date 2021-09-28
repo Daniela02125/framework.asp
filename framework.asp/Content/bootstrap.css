@@ -43,7 +43,7 @@ template {
   display: none;
 }
 a {
-  background-color: transparent;
+  background-color: yellow;
 }
 a:active,
 a:hover {
@@ -117,7 +117,7 @@ input,
 optgroup,
 select,
 textarea {
-  color: inherit;
+  color: yellow;
   font: inherit;
   margin: 0;
 }
